@@ -1,5 +1,5 @@
 <template>
-  <div class="weather" v-if="weatherData.adCode.city && weatherData.weather.weather">
+  <!-- <div class="weather" v-if="weatherData.adCode.city && weatherData.weather.weather">
     <span>{{ weatherData.adCode.city }}&nbsp;</span>
     <span>{{ weatherData.weather.weather }}&nbsp;</span>
     <span>{{ weatherData.weather.temperature }}℃</span>
@@ -11,13 +11,13 @@
       }}&nbsp;
     </span>
     <span class="sm-hidden">{{ weatherData.weather.windpower }}&nbsp;级</span>
-  </div>
-  <div class="weather" v-else>
-    <span>天气数据获取失败</span>
+  </div> -->
+  <div class="weather" >
+    <span>不要想，去干</span>
   </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { getAdcode, getWeather, getOtherWeather } from "@/api";
 import { Error } from "@icon-park/vue-next";
 
@@ -111,4 +111,4 @@ onMounted(() => {
   // 调用获取天气
   getWeatherData();
 });
-</script>
+</script> -->
