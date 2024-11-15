@@ -28,8 +28,8 @@
     </div>
   </div>
 </template>
-
 <script setup>
+import { ElMessageBox, ElMessage } from 'element-plus' 
 import { Icon } from "@vicons/utils";
 import { QuoteLeft, QuoteRight } from "@vicons/fa";
 import { Error } from "@icon-park/vue-next";
@@ -58,17 +58,26 @@ const descriptionText = reactive({
 
 // 切换右侧功能区
 const changeBox = () => {
-  if (store.getInnerWidth >= 721) {
+  // 使用浏览器的alert进行输入
+  if (store.boxOpenState) {
     store.boxOpenState = !store.boxOpenState;
+    return;
+  }
+  const value = prompt('请输入密码以开启盒子', '');
+  if (value !== null) {
+    if (value === 'maodeyu180') {
+      // 输入正确，进行宽度判断
+      if (store.getInnerWidth >= 721) {
+        store.boxOpenState = !store.boxOpenState;
+      } else {
+        ElMessage('当前页面宽度不足以开启盒子');
+      }
+    } else {
+      // 输入不正确，显示错误消息
+      ElMessage('输入内容不正确');
+    }
   } else {
-    ElMessage({
-      message: "当前页面宽度不足以开启盒子",
-      grouping: true,
-      icon: h(Error, {
-        theme: "filled",
-        fill: "#efefef",
-      }),
-    });
+    // 用户取消输入，不执行任何操作
   }
 };
 
@@ -86,6 +95,8 @@ watch(
   },
 );
 </script>
+
+
 
 <style lang="scss" scoped>
 .message {
@@ -190,4 +201,5 @@ watch(
   //   }
   // }
 }
+
 </style>
